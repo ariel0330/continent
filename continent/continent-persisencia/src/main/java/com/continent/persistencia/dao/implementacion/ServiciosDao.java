@@ -49,6 +49,7 @@ public class ServiciosDao extends GenericDao<Servicio> implements ServiciosDaoI 
 	}
 
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Servicio> BuscarServicio() {
 //			

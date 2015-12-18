@@ -19,6 +19,7 @@ public class SuscriptionDao extends GenericDao<Suscription> implements Suscripti
 
 	
 	
+	@SuppressWarnings("unchecked")
 	public List<Suscription> ReporteSuscriptiones(int operadorID,int clubID,int estadoSuscripcion,int idCanal,String fecha) { 
 	
 

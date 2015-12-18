@@ -17,6 +17,7 @@ public class SmschatsendDao extends GenericDao<Smschatsend> implements Smschatse
 		super(Smschatsend.class);
 	}
 	
+	@SuppressWarnings("unchecked")
 	public List<Smschatsend> buscarSMS(int operadorID,int clubID,String fecha) { 
 		
 		

@@ -16,7 +16,6 @@ import com.continent.persistencia.dao.interfaces.SmschatsendDaoI;
 import com.continent.persistencia.dao.interfaces.SuscriptionDaoI;
 import com.continent.persistencia.dao.interfaces.UserDaoI;
 import com.continent.persistencia.modelos.Smschatsend;
-import com.continent.persistencia.modelos.Suscription;
 
 @ContextConfiguration
 @RunWith(SpringJUnit4ClassRunner.class)
