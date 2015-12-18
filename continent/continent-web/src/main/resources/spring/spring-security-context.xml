@@ -20,24 +20,12 @@
 
 	<tx:annotation-driven transaction-manager="transactionManager" />
 
-
-	
-	<!-- 
-		SPRING SECURITY SETUP
-	-->
 	
 
 	
-<!-- 	<security:authentication-manager id="authenticationManager"> -->
-<!-- 		<security:authentication-provider user-service-ref="userDao"> -->
-<!-- 			<security:password-encoder ref="passwordEncoder"></security:password-encoder> -->
-<!-- 		</security:authentication-provider> -->
-<!-- 	</security:authentication-manager> -->
-	
-	<security:authentication-manager id="authenticationManager">
+		<security:authentication-manager id="authenticationManager">
 	   <security:authentication-provider>
 	   <security:password-encoder ref="passwordEncoder"/>
-<!-- 	    <security:password-encoder hash="sha-256" /> -->
 		<security:jdbc-user-service data-source-ref="dataSource"
  
 		   users-by-username-query=" 
@@ -52,8 +40,6 @@
 		/>
 	   </security:authentication-provider>
 	</security:authentication-manager>
-	
-	
 	
 	<security:http
 			realm="Protected API"
