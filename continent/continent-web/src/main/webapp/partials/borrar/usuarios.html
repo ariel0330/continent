@@ -1,0 +1,24 @@
+<div class="pull-right">
+	<a href="#!/createUsuario" class="btn btn-default" ng-show="hasRole('Administrador')" title="Create"><span class="glyphicon glyphicon-plus"></span></a>
+</div>
+<div class="page-header">
+	<h3>Usuarios</h3>
+</div>
+<hr>
+Usuarios
+<hr />
+
+<div ng-repeat="newsEntry in newsEntries">
+	<hr />
+	<div class="pull-right">
+		<a href="" ng-click="deleteEntry(newsEntry)" class="btn btn-xs btn-default" ng-show="hasRole('Administrador')" title="delete"><span class="glyphicon glyphicon-trash"></span></a>
+		<a href="#!/editUser/{{newsEntry.id}}" class="btn btn-xs btn-default" ng-show="hasRole('Administrador')" title="Editar"><span class="rpe rpe-application_edit"></span></a>
+	</div>
+	<h4>{{newsEntry.login}}</h4>
+	<h4>{{newsEntry.id}}</h4>
+	<div ng-repeat="rol in newsEntry.roles">
+	<h4>{{rol.id}}</h4>
+	<h4>{{rol.role}}</h4>
+	</div>
+	<p>{{newsEntry.password}}</p>
+</div>

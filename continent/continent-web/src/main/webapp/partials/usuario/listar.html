@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8" />
+</head>
+<body >
+<div class="pull-right">
+	<a href="#!/createUsuario" class="btn btn-default" ng-show="hasRole('Administrador')" title="Nuevo"><span class="rpe rpe-user_add"></span> Nuevo </a>
+</div>
+<div class="page-header">
+	<h2>Usuarios</h2>
+</div>
+
+<div class="nav-header" ng-click="doTheBack()">Atras!</div>
+
+
+<div>
+<h3>Criterios Busqueda</h3>
+
+<div class="row">
+<div class="col-md-4">
+<div class="row col-md-12">
+Perfil: 
+</div>
+<div class="row col-md-12">
+<select  ng-model="idPerfil" ng-options="perfil.id as perfil.role for perfil in perfiles">
+<option value="">   </option>
+</select> 
+</div>
+</div>
+<div class="col-md-4">
+<div class="row col-md-12">
+Estado: 
+</div>
+<div class="row col-md-12">
+<select ng-model="idEstado" ng-options="estado.idEstado as estado.estado for estado in estados">
+<option value="">   </option>
+</select>  
+</div>
+</div>
+
+<div class="pull-right"><div class="col-md-4">
+<div class="row col-md-12">
+<button class="btn btn-primary" ng-click="buscar()" ng-init="count=0">
+						<i class="rpe rpe-magnifier"></i> Buscar
+					</button>
+</div>
+</div>
+
+</div></div>
+
+<br>
+
+</div>
+	<div class="loader" ng-hide="!buscando">
+		Espere un momento ...
+	</div>
+	
+<div ng-hide="buscando">
+<table class="table table-bordered table-hover table-striped" ng-show="newsEntries.length > 0">
+  <thead><tr>
+  <th><b>Cont.</b></th>
+    <th><b>Usuario</b></th>
+      <th><b>Perfil</b></th>
+       <th><b>Estado</b></th>
+    	<th><b>Editar</b></th>
+   
+    
+  </tr></thead>
+  <tbody>
+  <tr dir-paginate="newsEntry in newsEntries | itemsPerPage: pageSize" current-page="currentPage">
+    <td>{{$index + 1}}</td>
+    <td>{{ newsEntry.login }}</td>
+	<td ng-repeat="rol in newsEntry.roles">{{rol.role}}</td>
+	<td >{{newsEntry.estadoBean.estado}}</td>
+	<td>	
+	<div class="pull-center">
+		<a href="#!/editUser/{{newsEntry.id}}" class="btn btn-xs btn-default" ng-show="hasRole('Administrador')" title="Editar"><span class="rpe rpe-application_edit"></span></a>
+	</div>
+	</td>
+  </tr></tbody>
+</table>
+        <div ng-controller="paginaCtrl" >
+
+          <div class="text-center">
+
+          <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="partials/dirPagination.tpl.html"></dir-pagination-controls>
+
+          </div>
+
+        </div>
+       
+        
+        <div class="table table-striped" ng-show="newsEntries.length == 0">
+        No hay resultados
+        </div>
+        
+</div>
+ </body>
+</html>

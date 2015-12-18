@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns="http://dozer.sourceforge.net"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://dozer.sourceforge.net
+          http://dozer.sourceforge.net/schema/beanmapping.xsd">
+
+
+ <configuration>
+    <date-format>dd/MM/yyyy</date-format>
+  </configuration>
+  
+
+
+ <mapping>
+    <class-a>com.continent.persistencia.modelos.Cliente</class-a>
+    <class-b>com.continent.web.dto.ClienteDTO</class-b>
+   <field>
+       <a>msIsdn</a>
+       <b>msIsdn</b>
+       
+   </field>
+    
+</mapping>
+</mappings> 

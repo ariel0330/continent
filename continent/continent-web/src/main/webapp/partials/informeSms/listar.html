@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+<meta charset="utf-8" />
+<script type="text/javascript">
+
+$(function() {	
+	
+	$("#fecha").datepicker({
+		dateFormat: "dd/mm/yy",
+// 		minDate: "-12m",
+// 		maxDate: "+2M +30D",
+// 			beforeShow: moveDatePicker,
+			showAnim: "slide"
+	});
+});	
+function moveDatePicker(input, inst)
+{
+    var elemento =input;
+	inst.dpDiv.css({ marginLeft: (elemento.offsetWidth)+"px" });
+
+}
+
+</script>
+</head>
+<body>
+
+	<div class="page-header">
+		<h3>Informe de Mensajes</h3>
+	</div>
+
+
+	<div>
+		<h3>Criterios Busqueda</h3>
+
+		<div class="row">
+			<div class="col-md-3">
+				<div class="row col-md-12">Club:</div>
+				<div class="row col-md-12">
+					<select ng-model="tipoClub"
+						ng-options="club.clubId as club.clubName for club in clubes">
+						<option value=""></option>
+					</select>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="row col-md-12">Operador:</div>
+				<div class="row col-md-12">
+					<select ng-model="operadorID"
+						ng-options="oper.smscId as oper.nombre for oper in operadores">
+						<option value=""></option>
+					</select>
+				</div>
+			</div>
+
+<div class="col-md-3">
+				<div class="row col-md-12">fecha:</div>
+				<div class="row col-md-12">
+					<input type="text"  id="fecha"  ng-model="fecha" >
+				</div>
+			</div>
+			
+			<div class="pull-right">
+			<div class="col-md-3">
+				<div class="row col-md-12">
+
+					<button class="btn btn-primary" ng-click="buscar()"
+						ng-init="count=0">
+						<i class="rpe rpe-magnifier"></i> Buscar
+					</button>
+				</div>
+			</div></div>
+
+		</div>
+		<br>
+
+	</div>
+	<div class="loader" ng-hide="!buscando">Espere un momento ...</div>
+
+	<div ng-hide="buscando">
+		<table class="table table-striped" ng-show="newsEntries.length > 0">
+			<thead>
+				<tr>
+				    <th><b>Cont.</b></th>
+					<th><b>Club</b></th>
+					<th><b>Numero Corto</b></th>
+					<th><b>Numero</b></th>
+					<th><b>Operador</b></th>
+					<th><b>Peticion</b></th>
+					<th><b>Cuerpo de Mensaje</b></th>
+					<th><b>Fecha</b></th>
+
+
+				</tr>
+			</thead>
+			<tbody>
+				<tr dir-paginate="newsEntry in newsEntries | itemsPerPage: pageSize"
+					current-page="currentPage">
+					<td>{{$index + 1}}</td>
+					<td ng-repeat="club in newsEntry.servicio.clubesServicios">{{
+						club.clube.clubName }}</td>
+					<td>{{ newsEntry.servicio.shortcode }}</td>
+					<td>{{ newsEntry.cliente.msIsdn }}</td>
+					<td>{{newsEntry.cliente.operadore.nombre}}</td>
+					<td>{{newsEntry.requestId}}</td>
+					<td>{{newsEntry.body}}</td>
+					<td>{{ newsEntry.tsSend | date : 'dd/MM/yyyy hh:mm:ss' }}</td>
+				</tr>
+			</tbody>
+		</table>
+		<div ng-controller="paginaCtrl">
+
+			<div class="text-center">
+
+				<dir-pagination-controls boundary-links="true"
+					on-page-change="pageChangeHandler(newPageNumber)"
+					template-url="partials/dirPagination.tpl.html"></dir-pagination-controls>
+
+			</div>
+
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en" ng-app="continentWeb">
+<head>
+ <meta charset="utf-8">
+	<title>Continent</title>
+	<link href="css/bootstrap-3.1.1.min.css" rel="stylesheet">
+	<link href="css/jquery-ui.css" rel="stylesheet">
+	<link href="css/custom.css" rel="stylesheet">
+</head>
+<body>
+
+	<div class="loader" ng-hide="initialized">
+		Espere un momento ...
+	</div>
+
+	<nav class="navbar navbar-fixed-top navbar-default ng-hide" role="navigation" ng-show="initialized">
+		<div class="container">
+			<div class="navbar-header">
+<!-- 				<button type="button" class="navbar-toggle" data-toggle="collapse" -->
+<!-- 					data-target="#navbar-collapse"> -->
+<!-- 					<span class="sr-only">Toggle navigation</span> -->
+<!-- 					<span class="icon-bar"></span>  -->
+<!-- 					<span class="icon-bar"></span>  -->
+<!-- 					<span class="icon-bar"></span> -->
+<!-- 				</button> -->
+				<a class="navbar-brand" href="#">Continent Interactive</a>
+			</div>
+
+
+<!-- 				<ul class="nav navbar-nav"> -->
+<!-- 					<li ng-show="user"><a href="#!/">Inicio</a></li> -->
+<!-- 				</ul> -->
+				<ul class="nav navbar-nav navbar-right">
+					<li ng-show="user"><a href="#!/"><i class="rpe rpe-house_link"></i> Inicio</a></li>
+					<li class="dropdown" ng-show="user">
+						<a href="" class="dropdown-toggle" data-toggle="dropdown">
+							<span class="rpe rpe-bullet_wrench"></span> Mantenimientos <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="#!/usuarios" ><span class="rpe rpe-group"></span> Usuarios </a></li>
+							<li><a href="#!/operadores" ><span class="rpe rpe-building"></span> Operadores </a></li>
+							<li><a href="#!/clubes" ><span class="rpe rpe-bricks"></span> Clubes </a></li>
+							<li><a href="#!/servicios" ><span class="rpe rpe-bell"></span> Servicios </a></li>
+						</ul>
+					</li>
+					<li class="dropdown" ng-show="user">
+						<a href="" class="dropdown-toggle" data-toggle="dropdown"> <i class="rpe rpe-page_excel"></i>Informes <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="#!/informeSubA"><span class="rpe rpe-phone_add"></span> Informe Suscripciones Alta </a></li>
+							<li><a href="#!/informeSubB"><span class="rpe rpe-phone_delete"></span> Informe Suscripciones Baja </a></li>
+							<li><a href="#!/informeSms"><span class="rpe rpe-comments"></span> Informe de Mensajes </a></li>
+							<li><a href="#!/informeCobro"><span class="rpe rpe-coins"></span> Informe de Cobros </a></li>
+						</ul>
+					</li>
+					<li class="dropdown" ng-show="user">
+						<a href="" class="dropdown-toggle" data-toggle="dropdown"><i class="rpe rpe-user"></i> {{user.name}} <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="" ng-click="logout()"><i class="rpe rpe-exclamation"></i> Salir </a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+	</nav>
+
+	<div class="container ng-hide" ng-show="initialized">
+		<div class="alert alert-danger" ng-show="error">{{error}}</div>
+		<div ng-view></div>
+	</div>
+	
+	<script src="js/jquery.js"></script>
+	<script src="js/jquery-ui.js"></script>
+	<script src="js/bootstrap-3.1.1.min.js"></script>
+	<script src="js/angular.js"></script>
+	<script src="js/angular-resource.js"></script>
+	<script src="js/angular-route.js"></script>
+	<script src="js/angular-cookies.js"></script>
+	<script src="js/controladores/Cobro.js"></script>
+	<script src="js/controladores/controladores.js"></script>
+	<script src="js/servicios/servicios.js"></script>
+	<script src="js/config.js"></script>
+	<script src="js/app.js"></script>
+	<script src="js/ui-bootstrap-tpls-0.13.0.min.js"></script>
+	<script src="js/dirPagination.js"></script>
+	<script src="js/util.js"></script>
+</body>
+</html>
