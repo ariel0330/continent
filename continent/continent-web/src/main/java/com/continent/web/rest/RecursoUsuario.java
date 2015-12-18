@@ -3,7 +3,6 @@ package com.continent.web.rest;
 import java.io.IOException;
 import java.util.List;
 
-import javax.servlet.ServletResponse;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -26,7 +25,6 @@ import org.springframework.stereotype.Component;
 import com.continent.web.dto.RoleDTO;
 import com.continent.web.dto.UserDTO;
 import com.continent.web.servicios.interfaces.IServicioUsuario;
-import com.continent.web.servicios.reporte.RecursoReporte;
 
 
 @Component

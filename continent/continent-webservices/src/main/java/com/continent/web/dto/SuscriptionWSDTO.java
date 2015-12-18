@@ -1,8 +1,6 @@
 package com.continent.web.dto;
 
 import java.io.Serializable;
-import javax.persistence.*;
-import java.util.Date;
 
 
 
