@@ -9,6 +9,7 @@ import java.util.List;
  * The persistent class for the canal database table.
  * 
  */
+
 @Entity
 @NamedQuery(name="Canal.findAll", query="SELECT c FROM Canal c")
 public class Canal implements Serializable {
