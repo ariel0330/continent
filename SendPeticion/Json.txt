@@ -1,0 +1,1 @@
+{"shortcode":2323,"cliente":{"msIsdn":"50764842411","smscId":2},"desUser":2}
