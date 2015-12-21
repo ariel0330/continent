@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.continent.persistencia.dao.interfaces.GenericDaoI;
 
+@Transactional
 public class GenericDao<T> implements GenericDaoI<T>{
 
 	@PersistenceContext(type=PersistenceContextType.EXTENDED)

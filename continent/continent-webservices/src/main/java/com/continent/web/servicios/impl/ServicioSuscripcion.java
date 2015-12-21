@@ -1,19 +1,25 @@
 package com.continent.web.servicios.impl;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.continent.persistencia.dao.interfaces.SuscriptionWSDaoI;
-import com.continent.persistencia.modelos.SuscriptionWS;
+import com.continent.persistencia.dao.interfaces.SuscriptionDaoI;
+import com.continent.persistencia.modelos.Suscription;
 import com.continent.web.dto.CanalDTO;
 import com.continent.web.dto.OperadorDTO;
 import com.continent.web.dto.ServicioDTO;
+import com.continent.web.dto.SuscriptionDTO;
 import com.continent.web.dto.SuscriptionWSDTO;
 import com.continent.web.servicios.interfaces.IServicioSuscripcion;
+import com.continent.web.utils.MapperUtils;
 
 @Service
-public class ServicioSuscripcionWS extends ServicioGenerico<SuscriptionWSDTO,SuscriptionWS> implements IServicioSuscripcion{
+public class ServicioSuscripcion extends ServicioGenerico<SuscriptionDTO,Suscription> implements IServicioSuscripcion{
 
 	@Autowired
 	ServicioCanal sc;
@@ -24,12 +30,12 @@ public class ServicioSuscripcionWS extends ServicioGenerico<SuscriptionWSDTO,Sus
 	@Autowired
 	ServicioServicios ss;
 	
-	public ServicioSuscripcionWS() {
-		super(SuscriptionWSDTO.class,SuscriptionWS.class);
+	public ServicioSuscripcion() {
+		super(SuscriptionDTO.class,Suscription.class);
 	}
 
 	@Autowired
-		public void setDaoObject(SuscriptionWSDaoI daoObject) {
+		public void setDaoObject(SuscriptionDaoI daoObject) {
 			super.setDaoObject(daoObject);
 		}
 	@Autowired
@@ -56,5 +62,14 @@ public class ServicioSuscripcionWS extends ServicioGenerico<SuscriptionWSDTO,Sus
 			return "El Servicio de suscrripcion no es valido";
 		}
 		return "Datos Correctos";
+	}
+	
+	public List<SuscriptionDTO> buscaSusWebser(int shortcode, String msIsdn,int idEstado)
+	{
+		List<Suscription> listaEntity= ((SuscriptionDaoI) this.getDaoObject()).buscaSusWebser(shortcode, msIsdn,idEstado);
+		List<SuscriptionDTO> listaEntityDTO = new ArrayList<SuscriptionDTO>();
+		MapperUtils.map(dozerMapper, listaEntity, listaEntityDTO, SuscriptionDTO.class);
+		return listaEntityDTO;
+		
 	}
 }

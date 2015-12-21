@@ -24,8 +24,6 @@
 	    <class>com.continent.persistencia.modelos.Smschatsend</class>
 	    <class>com.continent.persistencia.modelos.Suscription</class>
 	    <class>com.continent.persistencia.modelos.User</class>
-	    <class>com.continent.persistencia.modelos.SuscriptionWS</class>
-	    <class>com.continent.persistencia.modelos.ClienteWS</class>
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
 
 		

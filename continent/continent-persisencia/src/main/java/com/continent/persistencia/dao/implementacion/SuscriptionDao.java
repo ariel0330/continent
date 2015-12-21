@@ -1,5 +1,6 @@
 package com.continent.persistencia.dao.implementacion;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import javax.persistence.Query;
@@ -111,6 +112,33 @@ public class SuscriptionDao extends GenericDao<Suscription> implements Suscripti
 			
 					query.setParameter("fecha", fecha);
 			}
+			return (List<Suscription>) query.getResultList(); 
+	}
+
+	
+	@SuppressWarnings("unchecked")
+	public List<Suscription> buscaSusWebser(int shortcode, String msIsdn,int idEstado) { 
+	
+
+		
+			final StringBuilder sql = new StringBuilder("select e from ").append( 
+			type.getSimpleName())
+					.append(" e   ")
+					;
+				sql.append(" where ");
+				sql.append("e.cliente.msIsdn=:msIsdn");
+				sql.append(" and ");
+				sql.append("e.servicio.shortcode=:shortcode");
+				sql.append(" and ");
+				sql.append("e.estado.idEstado=:idEstado");
+
+			
+			final Query query = this.em.getEntityManagerFactory() 
+			.createEntityManager().createQuery(sql.toString());
+			query.setParameter("msIsdn", msIsdn);
+			query.setParameter("shortcode", shortcode);
+			query.setParameter("idEstado", idEstado);
+
 			return (List<Suscription>) query.getResultList(); 
 	}
 
