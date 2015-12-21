@@ -301,7 +301,7 @@ $.extend( $.ui, {
 			return true;
 		}
 
-		// TODO: determine which cases actually cause this to happen
+
 		// if the element doesn't have the scroll set, see if it's possible to
 		// set the scroll
 		el[ scroll ] = 1;
@@ -408,7 +408,7 @@ $.widget = function( name, base, prototype ) {
 		})();
 	});
 	constructor.prototype = $.widget.extend( basePrototype, {
-		// TODO: remove support for widgetEventPrefix
+		
 		// always use the name + a colon as the prefix, e.g., draggable:start
 		// don't prefix for widgets that aren't DOM-based
 		widgetEventPrefix: existingConstructor ? basePrototype.widgetEventPrefix : name
@@ -2445,7 +2445,7 @@ $.widget("ui.resizable", $.ui.mouse, {
 			}
 		};
 
-		//TODO: make renderAxis a prototype function
+		
 		this._renderAxis(this.element);
 
 		this._handles = $(".ui-resizable-handle", this.element)
@@ -2651,7 +2651,7 @@ $.widget("ui.resizable", $.ui.mouse, {
 
 			pr = this._proportionallyResizeElements;
 			ista = pr.length && (/textarea/i).test(pr[0].nodeName);
-			soffseth = ista && $.ui.hasScroll(pr[0], "left") /* TODO - jump height */ ? 0 : that.sizeDiff.height;
+			soffseth = ista && $.ui.hasScroll(pr[0], "left") ? 0 : that.sizeDiff.height;
 			soffsetw = ista ? 0 : that.sizeDiff.width;
 
 			s = { width: (that.helper.width()  - soffsetw), height: (that.helper.height() - soffseth) };
@@ -2851,7 +2851,7 @@ $.widget("ui.resizable", $.ui.mouse, {
 				position: "absolute",
 				left: this.elementOffset.left +"px",
 				top: this.elementOffset.top +"px",
-				zIndex: ++o.zIndex //TODO: Don't modify option
+				zIndex: ++o.zIndex 
 			});
 
 			this.helper
@@ -2925,7 +2925,7 @@ $.ui.plugin.add("resizable", "animate", {
 			o = that.options,
 			pr = that._proportionallyResizeElements,
 			ista = pr.length && (/textarea/i).test(pr[0].nodeName),
-			soffseth = ista && $.ui.hasScroll(pr[0], "left") /* TODO - jump height */ ? 0 : that.sizeDiff.height,
+			soffseth = ista && $.ui.hasScroll(pr[0], "left") ? 0 : that.sizeDiff.height,
 			soffsetw = ista ? 0 : that.sizeDiff.width,
 			style = { width: (that.size.width - soffsetw), height: (that.size.height - soffseth) },
 			left = (parseInt(that.element.css("left"), 10) + (that.position.left - that.originalPosition.left)) || null,
@@ -4291,7 +4291,7 @@ $.widget("ui.sortable", $.ui.mouse, {
 		//Append it after the actual current item
 		that.currentItem.after(that.placeholder);
 
-		//Update the size of the placeholder (TODO: Logic to fuzzy, see line 316/317)
+		
 		o.placeholder.update(that, that.placeholder);
 
 	},
@@ -7644,7 +7644,7 @@ function Datepicker() {
 		prevText: "Prev", // Display text for previous month link
 		nextText: "Next", // Display text for next month link
 		currentText: "Today", // Display text for current month link
-		//DDAG-3280.AJA Se comentan los nombres de los meses en ingles y se traducen al español
+		//DDAG-3280.AJA Se comentan los nombres de los meses en ingles y se traducen al espaï¿½ol
 //		monthNames: ["January","February","March","April","May","June",
 //			"July","August","September","October","November","December"], // Names of months for drop-down and formatting
 //		monthNamesShort: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"], // For formatting
@@ -12020,7 +12020,7 @@ $.widget( "ui.menu", {
 	},
 
 	select: function( event ) {
-		// TODO: It should never be possible to not have an active item at this
+		
 		// point, but the tests don't trigger mouseenter before click.
 		this.active = this.active || $( event.target ).closest( ".ui-menu-item" );
 		var ui = { item: this.active };
@@ -13479,7 +13479,7 @@ $.widget( "ui.spinner", {
 			}
 			this._repeat( null, $( event.currentTarget ).hasClass( "ui-spinner-up" ) ? 1 : -1, event );
 		},
-		// TODO: do we really want to consider this a stop?
+		
 		// shouldn't we just stop the repeater and wait until mouseup before
 		// we trigger the stop event?
 		"mouseleave .ui-spinner-button": "_stop"

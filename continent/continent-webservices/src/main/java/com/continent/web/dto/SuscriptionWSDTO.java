@@ -27,7 +27,7 @@ public class SuscriptionWSDTO implements Serializable {
 	private int status;
 
 
-	private ClienteDTO cliente;
+	private ClienteWSDTO cliente;
 	
 //	private Date susTs;
 
@@ -109,11 +109,11 @@ public class SuscriptionWSDTO implements Serializable {
 		this.susUser = susUser;
 	}
 	
-	public ClienteDTO getCliente() {
+	public ClienteWSDTO getCliente() {
 		return this.cliente;
 	}
 
-	public void setCliente(ClienteDTO cliente) {
+	public void setCliente(ClienteWSDTO cliente) {
 		this.cliente = cliente;
 	}
 

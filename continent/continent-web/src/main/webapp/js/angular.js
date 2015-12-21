@@ -3211,7 +3211,7 @@ forEach({
         return this;
       } else {
         // we are a read, so read the first child.
-        // TODO: do we still need this?
+      
         var value = fn.$dv;
         // Only if we have $dv do we iterate over all, otherwise it is just the first element.
         var jj = (value === undefined) ? Math.min(nodeCount, 1) : nodeCount;
@@ -7172,7 +7172,7 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
        * @param {string=} attrName Optional none normalized name. Defaults to key.
        */
       $set: function(key, value, writeAttr, attrName) {
-        // TODO: decide whether or not to throw an error if "class"
+       
         //is set through this function since it may cause $updateClass to
         //become unstable.
 
