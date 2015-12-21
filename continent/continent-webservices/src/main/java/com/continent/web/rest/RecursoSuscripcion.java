@@ -1,10 +1,10 @@
 package com.continent.web.rest;
 
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -31,7 +31,6 @@ import com.continent.web.dto.OperadorDTO;
 import com.continent.web.dto.ServicioDTO;
 import com.continent.web.dto.SuscriptionDTO;
 import com.continent.web.dto.SuscriptionWSDTO;
-import com.continent.web.servicios.interfaces.IServicioCliente;
 import com.continent.web.servicios.interfaces.IServicioSuscripcion;
 
 
@@ -46,12 +45,6 @@ public class RecursoSuscripcion
 
 	@Autowired
 	private IServicioSuscripcion servicioSuscripcion;
-	
-	@Autowired
-	private IServicioCliente servicioCliente;
-
-	
-
 
 	@Autowired
 	private ObjectMapper mapper;
@@ -70,13 +63,14 @@ public class RecursoSuscripcion
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	@SuppressWarnings("unused")
 	@Path("/alta")
-	public String create(SuscriptionWSDTO entity) throws ParseException
+	public HashMap<String, Object> create(SuscriptionWSDTO entity) throws ParseException
 	{
 		
 		SuscriptionDTO suscripcionDTO= new SuscriptionDTO();
-		
+		HashMap<String, Object> respuestas= new HashMap<>();
+		respuestas.put("Error", "");
+		respuestas.put("response","");
 		List<SuscriptionDTO> listasuscripcionDTO = servicioSuscripcion.buscaSusWebser(entity.getShortcode(), entity.getCliente().getMsIsdn(),1);
 		if ( listasuscripcionDTO.size() <1)
 		{
@@ -100,34 +94,38 @@ public class RecursoSuscripcion
 		EstadoDTO estado = new EstadoDTO();
 		estado.setIdEstado(1);
 		suscripcionDTO.setEstado(estado);
-		
-		String salida=servicioSuscripcion.validaSuscripcion(entity);
-		servicioCliente.save(cliente);
-		cliente = servicioCliente.obtenerPorPK(entity.getCliente().getMsIsdn());
+		String salida="";
+		salida=servicioSuscripcion.validaSuscripcion(entity);
+		respuestas.put("Error",salida);
 		suscripcionDTO.setCliente(cliente);
 		SimpleDateFormat sdf= new SimpleDateFormat("MM/dd/yyyy");
-		
 		suscripcionDTO.setFUltimoCobro(sdf.parse("12/31/2999"));
 		suscripcionDTO.setSusTs(new Date());
+		if("".equals(salida))
+		{
 		servicioSuscripcion.save(suscripcionDTO);
+		respuestas.put("response", "Alta Coorecta de Suscripcion");
+		}
 		}
 		else
 		{
-			return "ya se encuentra suscrito al servicio";
+			respuestas.put("Error","ya se encuentra suscrito al servicio");
 		}
 		
-		return null;
+		return respuestas;
 	}
 
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("/baja")
-	public String baja(SuscriptionWSDTO entity) throws ParseException
+	public HashMap<String, Object> baja(SuscriptionWSDTO entity) throws ParseException
 	{
 		
 		SuscriptionDTO suscripcionDTO= new SuscriptionDTO();
-		
+		HashMap<String, Object> respuestas= new HashMap<>();
+		respuestas.put("Error", "");
+		respuestas.put("response","");
 		List<SuscriptionDTO> listasuscripcionDTO = servicioSuscripcion.buscaSusWebser(entity.getShortcode(), entity.getCliente().getMsIsdn(),1);
 		if ( listasuscripcionDTO.size() == 1 )
 		{
@@ -141,16 +139,17 @@ public class RecursoSuscripcion
 		estado.setIdEstado(2);
 		suscripcionDTO.setEstado(estado);
 		
-		SimpleDateFormat sdf= new SimpleDateFormat("MM/dd/yyyy");
 		suscripcionDTO.setDesTs(new Date());
 		servicioSuscripcion.save(suscripcionDTO);
+		
+		respuestas.put("response", "Baja Correcta");
 		}
 		else
 		{
-			return "Usted no esta suscripto al servicio";
+			respuestas.put("Error", "Usted no esta suscripto al servicio");
 		}
 		logger.info("Baja registro");
-		return null;
+		return respuestas;
 	}
 	
 }

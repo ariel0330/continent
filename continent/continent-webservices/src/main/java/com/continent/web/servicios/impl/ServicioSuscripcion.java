@@ -61,7 +61,7 @@ public class ServicioSuscripcion extends ServicioGenerico<SuscriptionDTO,Suscrip
 		{
 			return "El Servicio de suscrripcion no es valido";
 		}
-		return "Datos Correctos";
+		return "";
 	}
 	
 	public List<SuscriptionDTO> buscaSusWebser(int shortcode, String msIsdn,int idEstado)
